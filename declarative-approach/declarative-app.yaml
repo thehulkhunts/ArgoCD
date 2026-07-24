@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: online-shop-app
+  namespace: argocd
+spec:
+  #if you want to deploy on specific project, create project and provide name here.
+  project: default 
+  source:
+    repoURL: https://github.com/thehulkhunts/ArgoCD.git
+    targetRevision: master     #provide branch like master, feature, or tag, or hEAD
+    path: declarative-approach/manifests # path to manifest files
+
+  destination:
+    server: <provide-your-cluster-url>
+    namespace: default # in which namespace you want to deploy an applications 
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

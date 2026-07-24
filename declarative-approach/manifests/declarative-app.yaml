@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: online-shop-app
+  namespace: argocd
+spec:
+  #if you want to deploy on specific project, create project and provide name here.
+  project: default 
+  source:
+    repoURL: https://github.com/thehulkhunts/ArgoCD.git
+    targetRevision: feat/argocd-testing    #provide branch like master, feature, or tag, or hEAD
+    path: declarative-approach/manifests # path to manifest files
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default # in which namespace you want to deploy an applications 
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+#Custom resource definition for declarative argocd deployment for apps's

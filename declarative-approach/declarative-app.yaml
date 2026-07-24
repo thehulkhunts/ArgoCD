@@ -19,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
+#Custom resource definition for declarative argocd deployment for apps's

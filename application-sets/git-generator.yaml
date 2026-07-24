@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-git-generator
+  namespace: argocd
+spec:
+  generators:
+    - git:  # Git generator scans the repo and generates an Application for each matching directory
+        repoURL: https://github.com/thehulkhunts/ArgoCD.git
+        revision: feat/applicationsets
+        directories:   # 'directories' accepts globs; each matched path becomes an entry 
+          - path: "app-of-apps/*" #app-of-apps/child-app applies to all child apps in app-of-appps
+  template:
+    metadata:
+      name: '{{path.basename}}-git'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/thehulkhunts/ArgoCD.git
+        targetRevision: feat/applicationsets
+        path: '{{path}}'  # 'path' is the full matched path 
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+
+
+# Notes:
+# - This is ideal for monorepos or where each app lives in its own folder.
+# - Ensure the repo is reachable by ArgoCD (public or added via argocd repo add).
+                       
+                       

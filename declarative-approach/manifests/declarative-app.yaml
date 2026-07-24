@@ -8,7 +8,7 @@ spec:
   project: default 
   source:
     repoURL: https://github.com/thehulkhunts/ArgoCD.git
-    targetRevision: feat/argocd-tesing    #provide branch like master, feature, or tag, or hEAD
+    targetRevision: feat/argocd-testing    #provide branch like master, feature, or tag, or hEAD
     path: declarative-approach/manifests # path to manifest files
 
   destination:

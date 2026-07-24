@@ -8,11 +8,11 @@ spec:
   project: default 
   source:
     repoURL: https://github.com/thehulkhunts/ArgoCD.git
-    targetRevision: master     #provide branch like master, feature, or tag, or hEAD
+    targetRevision: feat/argocd-testing    #provide branch like master, feature, or tag, or hEAD
     path: declarative-approach/manifests # path to manifest files
 
   destination:
-    server: <provide-your-cluster-url>
+    server: https://172.30.1.2:6443
     namespace: default # in which namespace you want to deploy an applications 
 
   syncPolicy:

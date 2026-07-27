@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-app
+  name: java-app-demo
   namespace: default
 spec:
   selector:
@@ -17,12 +17,12 @@ spec:
       containers:
       - name: java-app-ui
         image: vinayjadhav/java-app:v1.0.0
-        env:
-        - name: VITE_GEMINI_API
-          valueFrom:
-            secretKeyRef:
-              key: VITE_GEMINI_API
-              name: dockerhub-secret
+        #env:
+        #- name: VITE_GEMINI_API
+         # valueFrom:
+          #  secretKeyRef:
+           #   key: VITE_GEMINI_API
+            #  name: dockerhub-secret
         resources:
           limits:
             memory: "128Mi"

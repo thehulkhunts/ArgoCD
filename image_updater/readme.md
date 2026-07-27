@@ -17,10 +17,12 @@ kubectl delete -n argocd \
 
 ### In image_updater_git_secret.yaml file add your github pat and github URL and Username
 
-[image_updater_git_secret.yaml](image_updater_git_secret.yaml)
+- [image_updater_git_secret.yaml](image_updater_git_secret.yaml)
 
 ### Im above file pass docker hub PAT, if your registry is private 
-s
-[dockerhub-secret.yaml](dockerhub-secret.yaml)
+
+- [dockerhub-secret.yaml](dockerhub-secret.yaml)
 
 ### For production use external secrets store and secrets manager to render secrets instead passing locallys
+
+### Go through with Annotations in [image-updater-app.yaml](image-updater-app.yaml) CRD file

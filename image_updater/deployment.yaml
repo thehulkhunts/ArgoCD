@@ -7,12 +7,10 @@ spec:
   selector:
     matchLabels:
       app: java-app
-      role: front-end
   template:
     metadata:
       labels:
         app: java-app
-        role: frontend
     spec:
       containers:
       - name: java-app-ui

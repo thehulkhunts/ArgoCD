@@ -8,8 +8,13 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: java-app=vinayjadhav/java-app:v1.0.0 # Maps the image alias 'chai-app' to your DockerHub image
 
     # Use git write-back
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
-
+    #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
+    # use above annotation, when you use it in production, for testing pass the imperial way of secrets
+    argocd-image-updater.argoproj.io/write-back-method: git 
+    # added docker secrets to assume through annotate
+    argocd-image-updater.argoproj.io/app.pull-secret: secret:argocd/dockerhub-secret
+    # set branch to assume 
+    argocd-image-updater.argoproj.io/git-branch: feat/argocd-image-updater
     # Update strategy for chai-app image
     argocd-image-updater.argoproj.io/java-app.update-strategy: semver # Uses semantic versioning for image updates
 

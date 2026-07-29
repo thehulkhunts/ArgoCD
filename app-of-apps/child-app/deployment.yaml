@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-of-apps-online-shop-app
+  namespace: online-shop-app
+  labels:
+    app: argocd-deploys
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io: argocd-app-of-apps-online-shop
+      version: v1.0.0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io: argocd-app-of-apps-online-shop
+        version: v1.0.0
+    spec:
+      containers:
+      - name: online-shop-app
+        image: amitabhdevops/online_shop:latest
+        ports:
+          - containerPort: 3000
+        resources:
+          limits:
+            cpu: "512m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+        
